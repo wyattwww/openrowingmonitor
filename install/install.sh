@@ -50,7 +50,7 @@ ask() {
 
 CURRENT_DIR=$(pwd)
 INSTALL_DIR="/opt/openrowingmonitor"
-GIT_REMOTE="https://github.com/laberning/openrowingmonitor.git"
+GIT_REMOTE="https://github.com/wyattwong/openrowingmonitor.git"
 
 print "This script will set up Open Rowing Monitor on one of the following devices"
 print "  Raspberry Pi Zero W or WH"
@@ -89,7 +89,7 @@ fi
 # todo: once we know what hardware we support we can check for that via /sys/firmware/devicetree/base/model
 
 HOSTNAME=$(hostname)
-TARGET_HOSTNAME="rowingmonitor"
+TARGET_HOSTNAME="ergmonitor"
 if [[ $HOSTNAME != $TARGET_HOSTNAME ]]; then
   if ask "Do you want to change the device name from '$HOSTNAME' to '$TARGET_HOSTNAME'?" Y; then
     sudo hostname -b $TARGET_HOSTNAME
@@ -157,15 +157,15 @@ cd $INSTALL_DIR
 
 # get project code from repository
 sudo git init -q
-# older versions of git would use 'master' instead of 'main' for the default branch
-sudo git checkout -q -b main
+# older versions of git would use 'master' instead of 'v1beta_updates' for the default branch
+sudo git checkout -q -b v1beta_updates
 sudo git config remote.origin.url $GIT_REMOTE
 sudo git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
 # prevent altering line endings
 sudo git config core.autocrlf false
 sudo git fetch --force origin
 sudo git fetch --force --tags origin
-sudo git reset --hard origin/main
+sudo git reset --hard origin/v1beta_updates
 
 # add bin directory to the system path
 echo "export PATH=\"\$PATH:$INSTALL_DIR/bin\"" >> ~/.bashrc

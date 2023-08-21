@@ -100,6 +100,23 @@ export default {
     magicConstant: 2.8
   },
 
+  KayakPro: {
+    numOfImpulsesPerRevolution: 2,
+    dragFactor: 1025,
+    minimumTimeBetweenImpulses: 0.00005,
+    maximumTimeBetweenImpulses: 0.2,
+    smoothing: 1,
+    autoAdjustRecoverySlope: true,
+    autoAdjustRecoverySlopeMargin: 0.035,
+    flankLength: 3,
+    minimumDriveTime: 0.2,
+    minimumRecoveryTime: 0.3,
+    sprocketRadius: 0.3,
+    flywheelInertia: 0.355,
+    magicConstant: 2.5,
+    autoAdjustDragFactor: false,
+  },
+
   // Cheap Clone of Concept2 RowErg Model D
   // https://zocobodyfit.ro/produs/aparat-de-vaslit-zoco-body-fit-air-rower-pliabil-ecran-lcd-eficient-si-util-negru/
   Generic_Air_Rower: {
