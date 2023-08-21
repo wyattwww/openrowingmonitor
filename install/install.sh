@@ -93,7 +93,7 @@ macAddr=${macLower^^}
 macShortAddr=${macAddr:0:8}
 
 HOSTNAME=$(hostname)
-TARGET_HOSTNAME="ergmonitor $macShortAddr" 
+TARGET_HOSTNAME="ergmonitor-$macShortAddr" 
 if [[ $HOSTNAME != $TARGET_HOSTNAME ]]; then
   if ask "Do you want to change the device name from '$HOSTNAME' to '$TARGET_HOSTNAME'?" Y; then
     sudo hostname -b $TARGET_HOSTNAME
