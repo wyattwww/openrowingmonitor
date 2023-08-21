@@ -87,9 +87,13 @@ if ! ask "Do you want to start the installation of Open Rowing Monitor?" Y; then
 fi
 
 # todo: once we know what hardware we support we can check for that via /sys/firmware/devicetree/base/model
+read fullMAC </sys/class/net/wlan0/address
+macLower=${fullMAC//:/}
+macAddr=${macLower^^}
+macShortAddr=${macAddr:0:8}
 
 HOSTNAME=$(hostname)
-TARGET_HOSTNAME="ergmonitor"
+TARGET_HOSTNAME="ergmonitor $macShortAddr" 
 if [[ $HOSTNAME != $TARGET_HOSTNAME ]]; then
   if ask "Do you want to change the device name from '$HOSTNAME' to '$TARGET_HOSTNAME'?" Y; then
     sudo hostname -b $TARGET_HOSTNAME
