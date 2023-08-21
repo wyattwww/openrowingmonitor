@@ -18,8 +18,15 @@ import log from 'loglevel'
 import DeviceInformationService from './common/DeviceInformationService.js'
 import AdvertisingDataBuilder from './common/AdvertisingDataBuilder.js'
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 function createFtmsPeripheral (controlCallback, options) {
-  const peripheralName = options?.simulateIndoorBike ? config.ftmsBikePeripheralName : config.ftmsRowerPeripheralName
+  var inf = require('os').networkInterfaces()
+  var rawMac = inf.wlan0[0].mac
+  var macAddr = rawMac.replace(/:/g,"").toUpperCase().substring(0,8)
+
+  const peripheralName = (options?.simulateIndoorBike ? config.ftmsBikePeripheralName : config.ftmsRowerPeripheralName) + " " + macAddr
   const fitnessMachineService = new FitnessMachineService(options, controlPointCallback)
   const deviceInformationService = new DeviceInformationService()
 
