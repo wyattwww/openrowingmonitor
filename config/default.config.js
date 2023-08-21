@@ -94,7 +94,7 @@ export default {
 
   // Defines the name that is used to announce the FTMS Rower via Bluetooth Low Energy (BLE)
   // Some rowing training applications expect that the rowing device is announced with a certain name
-  ftmsRowerPeripheralName: 'OpenRowingMonitor',
+  ftmsRowerPeripheralName: 'ErgMonitor',
 
   // Defines the name that is used to announce the FTMS Bike via Bluetooth Low Energy (BLE)
   // Most bike training applications are fine with any device name
@@ -122,7 +122,7 @@ export default {
   dataDirectory: 'data',
 
   // Stores the training sessions as TCX files
-  createTcxFiles: true,
+  createTcxFiles: false,
 
   // Stores the (in-)stroke data in OpenRowingData CSV files
   createRowingDataFiles: true,
@@ -137,7 +137,7 @@ export default {
   gzipTcxFiles: false,
 
   // Apply gzip compression to the raw sensor data recording files (csv.gz)
-  gzipRawDataFiles: true,
+  gzipRawDataFiles: false,
 
   // EXPERIMENTAL: Settings used for the VO2 Max calculation that is embedded in the tcx file comments
   userSettings: {
@@ -177,7 +177,7 @@ export default {
   // the device to the profiles.
   // !! Only change this setting in the config/config.js file, and leave this on DEFAULT as that
   // is the fallback for the default profile settings
-  rowerSettings: rowerProfiles.DEFAULT,
+  rowerSettings: rowerProfiles.KayakPro,
 
   // command to shutdown the device via the user interface, leave empty to disable this feature
   shutdownCommand: 'halt',
