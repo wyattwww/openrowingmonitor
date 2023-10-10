@@ -365,6 +365,39 @@ test('Correct Rower behaviour for three noisefree strokes with dynamic dragfacto
 
 // Test behaviour with real-life data
 
+test('sample data for KayakPro should produce plausible results', async () => {
+  const rower = createRower(deepMerge(rowerProfiles.DEFAULT, rowerProfiles.KayakPro))
+  testTotalMovingTimeSinceStart(rower, 0)
+  testTotalLinearDistanceSinceStart(rower, 0)
+  testTotalNumberOfStrokes(rower, 0)
+  testRecoveryDragFactor(rower, rowerProfiles.KayakPro.dragFactor)
+
+  await replayRowingSession(rower.handleRotationImpulse, { filename: 'recordings/kayakpro_4mag.csv', realtime: false, loop: false })
+
+  testCyclePower(rower, 92.42421250060026)
+  testCycleLinearVelocity(rower, 3.33131154619038)
+
+  // As dragFactor is static, it should remain in place
+  testRecoveryDragFactor(rower, rowerProfiles.KayakPro.dragFactor)
+})
+
+test('sample data for KayakPro should produce plausible results', async () => {
+  const rower = createRower(deepMerge(rowerProfiles.DEFAULT, rowerProfiles.KayakPro))
+  testTotalMovingTimeSinceStart(rower, 0)
+  testTotalLinearDistanceSinceStart(rower, 0)
+  testTotalNumberOfStrokes(rower, 0)
+  testRecoveryDragFactor(rower, rowerProfiles.KayakPro.dragFactor)
+
+  await replayRowingSession(rower.handleRotationImpulse, { filename: 'recordings/kayakpro_4mag.csv', realtime: false, loop: false })
+
+  testTotalMovingTimeSinceStart(rower, 64.12005700000007)
+  testTotalLinearDistanceSinceStart(rower, 212.0408750627106)
+  testTotalNumberOfStrokes(rower, 66)
+
+  // As dragFactor is static, it should remain in place
+  testRecoveryDragFactor(rower, rowerProfiles.KayakPro.dragFactor)
+})
+
 test('sample data for Sportstech WRX700 should produce plausible results', async () => {
   const rower = createRower(deepMerge(rowerProfiles.DEFAULT, rowerProfiles.Sportstech_WRX700))
   testTotalMovingTimeSinceStart(rower, 0)

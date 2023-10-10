@@ -101,14 +101,14 @@ export default {
   },
 
   KayakPro: {
-    numOfImpulsesPerRevolution: 2,
-    dragFactor: 1025,
-    minimumTimeBetweenImpulses: 0.00005,
+    numOfImpulsesPerRevolution: 4,
+    dragFactor: 124,
+    minimumTimeBetweenImpulses: 0.0005,
     maximumTimeBetweenImpulses: 0.2,
     smoothing: 1,
     autoAdjustRecoverySlope: true,
     autoAdjustRecoverySlopeMargin: 0.035,
-    flankLength: 3,
+    flankLength: 8,
     minimumDriveTime: 0.2,
     minimumRecoveryTime: 0.3,
     sprocketRadius: 1.5,
